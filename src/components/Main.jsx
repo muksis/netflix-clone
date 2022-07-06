@@ -33,7 +33,7 @@ const Main = () => {
             Released: {movie?.release_date}
           </p>
           <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200">
-            {movie?.overview.length > 150 ? (
+            {movie?.overview.length >= 150 ? (
               <>
                 {readMore ? movie?.overview : `${movie?.overview.substring(0, 150)}...`}
                 <button className="text-red-300 text-bold pl-2" onClick={() => setReadMore(!readMore)}>
