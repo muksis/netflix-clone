@@ -4,6 +4,7 @@ import requests from "../requests";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
+  const [readMore, setReadMore] = useState(false);
 
   const movie = movies[Math.floor(Math.random() * movies.length)];
 
@@ -12,14 +13,6 @@ const Main = () => {
         setMovies(res.data.results);
     });
   }, []);
-
-  const truncateString = (str, num) => {
-    if (str?.length > num) {
-      return str.slice(0, num) + "..."; 
-    } else {
-      return str;
-    }
-  };
 
   return (
     <div className="w-full h-[550px] text-white">
@@ -40,7 +33,16 @@ const Main = () => {
             Released: {movie?.release_date}
           </p>
           <p className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200">
-            {truncateString(movie?.overview, 150)}
+            {movie?.overview.length > 150 ? (
+              <>
+                {readMore ? movie?.overview : `${movie?.overview.substring(0, 150)}...`}
+                <button className="text-red-300 text-bold pl-2" onClick={() => setReadMore(!readMore)}>
+                  {readMore ? "Show Less" : "Read More"}
+                </button>
+              </>
+            ) : (
+              movie?.overview
+            )}
           </p>
         </div>
       </div>
