@@ -36,6 +36,6 @@ const Row = ({ title, fetchUrl, rowId }) => {
       </div>
     </>
   );
-}
+};
 
 export default Row;

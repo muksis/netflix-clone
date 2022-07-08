@@ -18,6 +18,6 @@ const Movie = ({movie}) => {
       </div>
     </div>
   );
-}
+};
 
 export default Movie;

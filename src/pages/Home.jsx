@@ -12,6 +12,6 @@ const Home = () => {
       <Row rowId="4" title="Top Rated" fetchUrl={requests.requestTopRated} />
     </div>
   );
-}
+};
 
 export default Home;
