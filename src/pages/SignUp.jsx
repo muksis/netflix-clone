@@ -22,9 +22,9 @@ const SignUp = () => {
                   </div>
                   <p className="py-8">
                     <span className="text-gray-600">
-                      Already subscribed to Netflix?
+                      Already subscribed to Clonflix?
                     </span>
-                    <Link to="/sign-in">Sign In</Link>   
+                    <Link to="/sign-in"> Sign In</Link>   
                   </p>
                 </form>
               </div>
