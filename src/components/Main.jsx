@@ -4,15 +4,18 @@ import requests from "../requests";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState(null);
   const [readMore, setReadMore] = useState(false);
-
-  const movie = movies[Math.floor(Math.random() * movies.length)];
 
   useEffect(() => {
     axios.get(requests.requestPopular).then((res) => {
         setMovies(res.data.results);
     });
   }, []);
+
+  useEffect(() => {
+    setMovie(movies[Math.floor(Math.random() * movies.length)]);
+  }, [movies])
 
   return (
     <div className="w-full h-[550px] text-white">
