@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
 
@@ -8,13 +9,28 @@ const SignUp = () => {
   const { signUp } = UserAuth();
   const navigate = useNavigate();
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateEmail(email)) {
+      return toast.error('Please enter a valid email');
+    }
+    if (password.length < 8) {
+      return toast.error('Your password must contain at least 8 characters');
+    }
+
     try {
       await signUp(email, password);
       navigate('/');
     } catch (error) {
-      console.log(error);
+      toast.error('Something went wrong with registration');
     }
   };
 
@@ -40,14 +56,12 @@ const SignUp = () => {
                     className='p-3 my-2 bg-gray-700 rounded'
                     type='email'
                     placeholder='Email'
-                    required
                   />
                   <input
                     onChange={(e) => setPassword(e.target.value)}
                     className='p-3 my-2 bg-gray-700 rounded'
                     type='password'
                     placeholder='Password'
-                    required
                   />
                   <button className='bg-red-600 py-3 my-6 rounded font-bold'>
                     Sign Up

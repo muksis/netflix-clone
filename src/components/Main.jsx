@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import requests from '../requests';
 import { UserAuth } from '../context/AuthContext';
@@ -33,9 +34,9 @@ const Main = () => {
           img: movie.backdrop_path,
         }),
       });
-      alert('Saved in My Favorites');
+      toast.success('Saved in My Favorites');
     } else {
-      alert('Please sign in to save a movie');
+      toast.error('Please sign in to save a movie');
     }
   };
 

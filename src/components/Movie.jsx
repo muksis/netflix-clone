@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import { UserAuth } from '../context/AuthContext';
 import { db } from '../firebase.config';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
@@ -22,7 +23,7 @@ const Movie = ({ movie }) => {
         }),
       });
     } else {
-      alert('Please sign in to save a movie');
+      toast.error('Please sign in to save a movie');
     }
   };
 

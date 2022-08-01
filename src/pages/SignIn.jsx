@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +15,7 @@ const SignIn = () => {
       await signIn(email, password);
       navigate('/');
     } catch (error) {
-      console.log(error);
+      toast.error('Bad user credentails');
     }
   };
 
